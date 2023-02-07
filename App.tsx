@@ -1,20 +1,36 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import {
+  MyBagScreen,
+  DetailScreen,
+  SplashScreen,
+  SignupScreen,
+  PaymentScreen,
+  BottomTabScreen,
+  OTPVerifyScreen,
+} from "./screens";
+import { screenNames } from "./screenNames";
+import { ReduxProvider } from "./redux/store";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <ReduxProvider>
+      <SplashScreen />
+      <NavigationContainer>
+        <Stack.Navigator screenOptions={{ headerShown: false }}>
+          {/* <Stack.Screen name={screenNames.SIGNUP} component={SignupScreen} /> */}
+          {/* <Stack.Screen name={screenNames.OTP} component={OTPVerifyScreen} /> */}
+          <Stack.Screen
+            name={screenNames.INITIAL}
+            component={BottomTabScreen}
+          />
+          <Stack.Screen name={screenNames.DETAIL} component={DetailScreen} />
+          <Stack.Screen name={screenNames.MYBAG} component={MyBagScreen} />
+          <Stack.Screen name={screenNames.PAYMENT} component={PaymentScreen} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </ReduxProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
