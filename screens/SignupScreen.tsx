@@ -2,16 +2,20 @@ import {
   Text,
   View,
   Image,
+  Keyboard,
   TextInput,
+  Pressable,
   SafeAreaView,
   TouchableOpacity,
 } from "react-native";
-import React, { useState } from "react";
 import { MaterialIcons } from "@expo/vector-icons";
+import React, { useState, useContext } from "react";
+import { MainContext } from "../context/MainContext";
 import { useNavigation } from "@react-navigation/native";
 
 export const SignupScreen = () => {
   const navigate = useNavigation();
+  const { registerWithPhoneNumber } = useContext(MainContext);
   const [number, setNumber] = useState<string>("");
   return (
     <SafeAreaView className="bg-white flex-1 flex-col justify-between">
@@ -21,7 +25,10 @@ export const SignupScreen = () => {
       >
         <MaterialIcons name="keyboard-arrow-left" size={30} color="black" />
       </TouchableOpacity>
-      <View className="flex items-center justify-center">
+      <Pressable
+        onPress={() => Keyboard.dismiss()}
+        className="flex items-center justify-center"
+      >
         <Image
           source={require("../assets/phoneFrame.png")}
           style={{ width: 20, height: 30, marginBottom: 15 }}
@@ -35,21 +42,23 @@ export const SignupScreen = () => {
         <View className="flex flex-row items-center">
           <Text className="text-xl text-black/50 font-medium">+976</Text>
           <TextInput
+            maxLength={8}
             keyboardType="phone-pad"
             onChangeText={(val) => setNumber(val)}
             className="w-48 border-b border-b-green-100"
           />
         </View>
-      </View>
-      <TouchableOpacity
-        disabled={number === ""}
-        activeOpacity={0.8}
-        className={`bg-red-500 mx-3 mb-5 rounded-md ${
-          number === "" ? "bg-gray-200" : "bg-[#D3A762]"
-        }`}
-      >
-        <Text className="text-center text-white font-medium py-4">Enter</Text>
-      </TouchableOpacity>
+      </Pressable>
+        <TouchableOpacity
+          disabled={number.length !== 8}
+          activeOpacity={0.8}
+          onPress={() => registerWithPhoneNumber(number)}
+          className={`bg-red-500 mx-3 mb-5 rounded-md ${
+            number.length !== 8 ? "bg-gray-200" : "bg-[#D3A762]"
+          }`}
+        >
+          <Text className="text-center text-white font-medium py-4">Enter</Text>
+        </TouchableOpacity>
     </SafeAreaView>
   );
 };

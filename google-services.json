@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "455387590601",
+    "project_id": "leapsy-8e851",
+    "storage_bucket": "leapsy-8e851.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:455387590601:android:67217730fbe87b6ddd8218",
+        "android_client_info": {
+          "package_name": "com.leapsy.test"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "455387590601-nobve0eer6q5k3tdg9qna2teeiqugvdd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBN1N4kfjlXfTAWLl8KYfEoC8La_nWdEs8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "455387590601-nobve0eer6q5k3tdg9qna2teeiqugvdd.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "455387590601-uhba2q22gr0eje7i6mmob32rtsfrrmft.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.leapsy.test"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

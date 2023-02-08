@@ -7,3 +7,7 @@ type TOrderType = {
     status: string;
   };
 };
+interface Window {
+  recaptchaVerifier: any;
+  confirmationResult: any;
+}
