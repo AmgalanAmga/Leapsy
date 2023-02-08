@@ -5,6 +5,7 @@ export const MainContext = createContext<any>(null);
 
 export const MainProvider = ({ children }: { children: ReactNode }) => {
   const [confirm, setConfirm] = useState<any>(null);
+  const [productsInBag, setProductsInBag] = useState([]);
 
   const registerWithPhoneNumber = async (number: string) => {
     try {

@@ -11,9 +11,13 @@ export const Food = () => {
     <FlatList
       data={products}
       nestedScrollEnabled
+      keyExtractor={(_, id) => `${id}`}
+      showsVerticalScrollIndicator={false}
       numColumns={products.length > 1 ? 2 : 1}
       contentContainerStyle={{
         paddingTop: 24,
+        display: "flex",
+        alignItems: "center",
         backgroundColor: "white",
       }}
       renderItem={({ item }) => (

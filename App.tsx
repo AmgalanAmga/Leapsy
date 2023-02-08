@@ -17,18 +17,21 @@ const Stack = createNativeStackNavigator();
 export default function App() {
   return (
     <MainProvider>
-      <SplashScreen />
       <NavigationContainer>
-        <Stack.Navigator screenOptions={{ headerShown: false }}>
-          {/* <Stack.Screen name={screenNames.SIGNUP} component={SignupScreen} /> */}
-          <Stack.Screen name={screenNames.OTP} component={OTPVerifyScreen} />
-          {/* <Stack.Screen
+        <Stack.Navigator
+          initialRouteName={screenNames.SPLASH}
+          screenOptions={{ headerShown: false }}
+        >
+          <Stack.Screen
             name={screenNames.INITIAL}
             component={BottomTabScreen}
           />
+          {/* <Stack.Screen name={screenNames.SIGNUP} component={SignupScreen} /> */}
+          <Stack.Screen name={screenNames.SPLASH} component={SplashScreen} />
+          <Stack.Screen name={screenNames.OTP} component={OTPVerifyScreen} />
           <Stack.Screen name={screenNames.DETAIL} component={DetailScreen} />
           <Stack.Screen name={screenNames.MYBAG} component={MyBagScreen} />
-          <Stack.Screen name={screenNames.PAYMENT} component={PaymentScreen} /> */}
+          <Stack.Screen name={screenNames.PAYMENT} component={PaymentScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </MainProvider>

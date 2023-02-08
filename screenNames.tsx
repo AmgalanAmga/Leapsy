@@ -1,12 +1,13 @@
 export enum screenNames {
-  HOME = "Home",
+  OTP = "Otp",
   SCAN = "Scan",
+  HOME = "Home",
   ORDER = "Order",
+  MYBAG = "MyBag",
+  DETAIL = "Detail",
+  SIGNUP = "Signup",
+  SPLASH = "Splash",
   PROFILE = "Profile",
   INITIAL = "Initial",
-  DETAIL = "Detail",
-  MYBAG = "MyBag",
   PAYMENT = "Payment",
-  SIGNUP = "SIGNUP",
-  OTP = "OTP"
 }

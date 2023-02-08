@@ -7,7 +7,6 @@ import {
   SafeAreaView,
 } from "react-native";
 import React from "react";
-import { myFavorite, seasonal } from "../data";
 import {
   Hot,
   Cold,
@@ -17,6 +16,7 @@ import {
   PageHeader,
   ProductCart,
 } from "../components";
+import { myFavorite, seasonal } from "../data";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 
 const TopTab = createMaterialTopTabNavigator();
@@ -26,6 +26,7 @@ export const HomeScreen = () => {
     <SafeAreaView className="bg-white ">
       <PageHeader />
       <ScrollView
+        nestedScrollEnabled
         className="p-5"
         contentContainerStyle={{ paddingBottom: 150 }}
       >
@@ -43,7 +44,7 @@ export const HomeScreen = () => {
         </Text>
         <FlatList
           horizontal
-          nestedScrollEnabled
+          keyExtractor={(_, id) => `${id}`}
           data={myFavorite}
           showsHorizontalScrollIndicator={false}
           renderItem={({ item: { image, name } }) => (
@@ -55,14 +56,14 @@ export const HomeScreen = () => {
         </Text>
         <FlatList
           horizontal
-          nestedScrollEnabled
           data={seasonal}
+          keyExtractor={(_, id) => `${id}`}
           showsHorizontalScrollIndicator={false}
           renderItem={({ item: { image, name } }) => (
             <ProductCart image={image} name={name} />
           )}
         />
-        <View style={{ flex: 1, height: 600 }}>
+        {/* <View style={{ flex: 1, height: 600 }}>
           <TopTab.Navigator
             screenOptions={{
               tabBarLabelStyle: { fontSize: 10 },
@@ -74,7 +75,7 @@ export const HomeScreen = () => {
             <TopTab.Screen name="Food" component={Food} />
             <TopTab.Screen name="Blend" component={Blend} />
           </TopTab.Navigator>
-        </View>
+        </View> */}
       </ScrollView>
     </SafeAreaView>
   );

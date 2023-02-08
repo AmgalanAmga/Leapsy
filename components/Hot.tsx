@@ -12,8 +12,12 @@ export const Hot = () => {
       data={products}
       numColumns={products.length > 1 ? 2 : 1}
       nestedScrollEnabled
+      keyExtractor={(_, id) => `${id}`}
+      showsVerticalScrollIndicator={false}
       contentContainerStyle={{
         paddingTop: 24,
+        display:"flex",
+        alignItems:"center",
         backgroundColor: "white",
       }}
       renderItem={({ item }) => (
