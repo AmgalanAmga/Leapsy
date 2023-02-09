@@ -16,14 +16,8 @@ import React, { useState, useContext, useEffect } from "react";
 
 export const SignupScreen = () => {
   const navigate = useNavigation();
-  const { registerWithPhoneNumber, confirm } = useContext(MainContext);
+  const { registerWithPhoneNumber } = useContext(MainContext);
   const [number, setNumber] = useState<string>("");
-  useEffect(() => {
-    if (confirm?._verificationId) {
-      console.log("es");
-      navigate.navigate(screenNames.OTP as never);
-    }
-  }, [confirm?._verificationId]);
   return (
     <SafeAreaView className="bg-white flex-1 flex-col justify-between">
       <TouchableOpacity
@@ -59,7 +53,10 @@ export const SignupScreen = () => {
       <TouchableOpacity
         disabled={number.length !== 8}
         activeOpacity={0.8}
-        onPress={() => registerWithPhoneNumber(number)}
+        onPress={async () => {
+          await registerWithPhoneNumber(number);
+          navigate.navigate(screenNames.OTP as never);
+        }}
         className={`bg-red-500 mx-3 mb-5 rounded-md ${
           number.length !== 8 ? "bg-gray-200" : "bg-[#D3A762]"
         }`}

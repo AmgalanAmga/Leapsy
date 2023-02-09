@@ -12,6 +12,7 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { MainContext } from "../context/MainContext";
 import { useNavigation } from "@react-navigation/native";
 import React, { useState, useContext, useRef, useEffect } from "react";
+import { screenNames } from "../screenNames";
 
 export const OTPVerifyScreen = () => {
   const navigate = useNavigation();
@@ -20,7 +21,7 @@ export const OTPVerifyScreen = () => {
   const [number, setNumber] = useState<string>("");
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [otp, setOtp] = useState<string[]>(new Array(6).fill(""));
-  const joinedNum = otp.join("")
+  const joinedNum = otp.join("");
   const handleChange = (val: string, id: number) => {
     const newOtp: string[] = [...otp];
     newOtp[id] = val.substring(val.length - 1);
@@ -72,7 +73,10 @@ export const OTPVerifyScreen = () => {
       <TouchableOpacity
         disabled={joinedNum.length !== 6}
         activeOpacity={0.8}
-        onPress={() => confirmCode(joinedNum)}
+        onPress={async () => {
+          await confirmCode(joinedNum);
+          navigate.navigate(screenNames.ORDER as never);
+        }}
         className={`bg-red-500 mx-3 mb-5 rounded-md ${
           joinedNum.length !== 6 ? "bg-gray-200" : "bg-[#D3A762]"
         }`}
