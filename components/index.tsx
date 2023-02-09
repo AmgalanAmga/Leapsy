@@ -12,4 +12,5 @@ export * from "./AddNewCard";
 export * from "./Processing";
 export * from "./PageHeader";
 export * from "./ProductCart";
+export * from "./ProductCart1";
 export * from "./DetailBagBack";

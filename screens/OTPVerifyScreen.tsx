@@ -15,12 +15,12 @@ import React, { useState, useContext, useRef, useEffect } from "react";
 
 export const OTPVerifyScreen = () => {
   const navigate = useNavigation();
-  // const { registerWithPhoneNumber } = useContext(MainContext);
+  const { confirmCode } = useContext(MainContext);
   const inputRef = useRef<TextInput>(null);
   const [number, setNumber] = useState<string>("");
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [otp, setOtp] = useState<string[]>(new Array(6).fill(""));
-
+  const joinedNum = otp.join("")
   const handleChange = (val: string, id: number) => {
     const newOtp: string[] = [...otp];
     newOtp[id] = val.substring(val.length - 1);
@@ -32,7 +32,7 @@ export const OTPVerifyScreen = () => {
   useEffect(() => {
     inputRef.current?.focus();
   }, [currentIndex]);
-  console.log(otp.join(""));
+
   return (
     <SafeAreaView className="bg-white flex-1 flex-col justify-between">
       <TouchableOpacity
@@ -70,11 +70,11 @@ export const OTPVerifyScreen = () => {
         </View>
       </Pressable>
       <TouchableOpacity
-        disabled={number.length !== 8}
+        disabled={joinedNum.length !== 6}
         activeOpacity={0.8}
-        // onPress={() => registerWithPhoneNumber(number)}
+        onPress={() => confirmCode(joinedNum)}
         className={`bg-red-500 mx-3 mb-5 rounded-md ${
-          number.length !== 8 ? "bg-gray-200" : "bg-[#D3A762]"
+          joinedNum.length !== 6 ? "bg-gray-200" : "bg-[#D3A762]"
         }`}
       >
         <Text className="text-center text-white font-medium py-4">Enter</Text>

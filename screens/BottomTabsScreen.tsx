@@ -40,7 +40,12 @@ export const BottomTabScreen = () => {
       <BottomTab.Screen name={screenNames.SCAN} component={ScanScreen} />
       <BottomTab.Screen
         name={screenNames.ORDER}
-        component={user ? OrderScreen : SignupScreen}
+        component={
+          // user ? 
+          OrderScreen 
+          // : 
+          // SignupScreen
+        }
       />
       {user && (
         <BottomTab.Screen

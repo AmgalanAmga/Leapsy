@@ -63,8 +63,8 @@ export const HomeScreen = () => {
             <ProductCart image={image} name={name} />
           )}
         />
-        {/* <View style={{ flex: 1, height: 600 }}>
-          <TopTab.Navigator
+        <View style={{ flex: 1, height: 600 }}>
+          {/* <TopTab.Navigator
             screenOptions={{
               tabBarLabelStyle: { fontSize: 10 },
             }}
@@ -74,8 +74,8 @@ export const HomeScreen = () => {
             <TopTab.Screen name="Cold" component={Cold} />
             <TopTab.Screen name="Food" component={Food} />
             <TopTab.Screen name="Blend" component={Blend} />
-          </TopTab.Navigator>
-        </View> */}
+          </TopTab.Navigator> */}
+        </View>
       </ScrollView>
     </SafeAreaView>
   );

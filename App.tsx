@@ -26,7 +26,6 @@ export default function App() {
             name={screenNames.INITIAL}
             component={BottomTabScreen}
           />
-          {/* <Stack.Screen name={screenNames.SIGNUP} component={SignupScreen} /> */}
           <Stack.Screen name={screenNames.SPLASH} component={SplashScreen} />
           <Stack.Screen name={screenNames.OTP} component={OTPVerifyScreen} />
           <Stack.Screen name={screenNames.DETAIL} component={DetailScreen} />

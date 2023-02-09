@@ -1,27 +1,29 @@
 import { data } from "../data";
-import React, { useState } from "react";
-import { ProductCart } from "./ProductCart";
+import { MainContext } from "../context/MainContext";
+import React, { useState, useContext } from "react";
+import { ProductCart1 } from "./ProductCart1";
 import { FlatList } from "react-native";
 
 export const Hot = () => {
-  const [products, setProducts] = useState(
-    data.filter((item) => item.category === "hot")
+  const { products } = useContext(MainContext);
+  const [productsHot, setProducts] = useState(
+    products.filter((item: any) => item.category === "hot")
   );
   return (
     <FlatList
-      data={products}
-      numColumns={products.length > 1 ? 2 : 1}
+      data={productsHot}
+      numColumns={productsHot.length > 1 ? 2 : 1}
       nestedScrollEnabled
       keyExtractor={(_, id) => `${id}`}
       showsVerticalScrollIndicator={false}
       contentContainerStyle={{
         paddingTop: 24,
-        display:"flex",
-        alignItems:"center",
+        display: "flex",
+        alignItems: "center",
         backgroundColor: "white",
       }}
       renderItem={({ item }) => (
-        <ProductCart image={item.image} name={item.name} />
+        <ProductCart1 image={item.image} name={item.name} />
       )}
     />
   );
