@@ -1,7 +1,11 @@
-import React from "react";
+import { useContext } from "react";
+import auth from "@react-native-firebase/auth";
+import { MainContext } from "../context/MainContext";
 import { View, Text, SafeAreaView, Image, Pressable } from "react-native";
 
 export const ProfileScreen = () => {
+  const { user } = useContext(MainContext);
+
   return (
     <SafeAreaView className="bg-white flex-1 items-center justify-center">
       <View className="rounded-full overflow-hidden w-16 h-16">
@@ -12,8 +16,8 @@ export const ProfileScreen = () => {
           style={{ width: 64, height: 64 }}
         />
       </View>
-      <Text className="mt-2">4645646</Text>
-      <Pressable>
+      <Text className="mt-2">{user}</Text>
+      <Pressable onPress={async () => await auth().signOut()}>
         <Image
           source={require("../assets/logout.png")}
           style={{ width: 150, height: 50 }}

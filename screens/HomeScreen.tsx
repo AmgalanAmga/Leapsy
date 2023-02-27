@@ -42,29 +42,21 @@ export const HomeScreen = () => {
         <Text className="mt-7 mb-3.5 text-base font-medium">
           Your favourite
         </Text>
-        <FlatList
-          horizontal
-          keyExtractor={(_, id) => `${id}`}
-          data={myFavorite}
-          showsHorizontalScrollIndicator={false}
-          renderItem={({ item: { image, name } }) => (
-            <ProductCart image={image} name={name} />
-          )}
-        />
+        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+          {myFavorite.map(({ image, name }, id) => (
+            <ProductCart key={id} image={image} name={name} />
+          ))}
+        </ScrollView>
         <Text className="mt-7 mb-3.5 text-base font-medium">
           Seasonal drinks
         </Text>
-        <FlatList
-          horizontal
-          data={seasonal}
-          keyExtractor={(_, id) => `${id}`}
-          showsHorizontalScrollIndicator={false}
-          renderItem={({ item: { image, name } }) => (
-            <ProductCart image={image} name={name} />
-          )}
-        />
+        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+          {seasonal.map(({ image, name }, id) => (
+            <ProductCart key={id} image={image} name={name} />
+          ))}
+        </ScrollView>
         <View style={{ flex: 1, height: 600 }}>
-          {/* <TopTab.Navigator
+          <TopTab.Navigator
             screenOptions={{
               tabBarLabelStyle: { fontSize: 10 },
             }}
@@ -74,7 +66,7 @@ export const HomeScreen = () => {
             <TopTab.Screen name="Cold" component={Cold} />
             <TopTab.Screen name="Food" component={Food} />
             <TopTab.Screen name="Blend" component={Blend} />
-          </TopTab.Navigator> */}
+          </TopTab.Navigator>
         </View>
       </ScrollView>
     </SafeAreaView>

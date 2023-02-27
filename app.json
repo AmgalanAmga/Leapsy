@@ -20,7 +20,10 @@
     "ios": {
       "supportsTablet": true,
       "googleServicesFile": "./ios/GoogleService-Info.plist",
-      "bundleIdentifier": "ios"
+      "bundleIdentifier": "ios",
+      "infoPlist": {
+        "NSCameraUsageDescription": "This app uses the camera to scan QR barcodes for your attendance"
+      }
     },
     "android": {
       "googleServicesFile": "./google-services.json",
@@ -36,6 +39,7 @@
     "plugins": [
       "@react-native-firebase/app",
       "@react-native-firebase/auth",
+      "@react-native-firebase/crashlytics",
       [
         "expo-build-properties",
         {

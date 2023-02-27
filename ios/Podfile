@@ -11,9 +11,9 @@ install! 'cocoapods',
 
 target 'leapsycoffee' do
   pod 'Firebase', :modular_headers => true
-  pod 'FirebaseCoreInternal', :modular_headers => true
-  pod 'GoogleUtilities', :modular_headers => true
-  pod 'FirebaseCore', :modular_headers => true
+pod 'FirebaseCoreInternal', :modular_headers => true
+pod 'GoogleUtilities', :modular_headers => true
+pod 'FirebaseCore', :modular_headers => true
   pod 'FirebaseAuth'  
   pod 'FirebaseFirestore'
   use_expo_modules!

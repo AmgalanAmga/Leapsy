@@ -6,12 +6,13 @@ import { SignupScreen } from "./SignupScreen";
 import { AntDesign } from "@expo/vector-icons";
 import { ProfileScreen } from "./ProfileScreen";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { useState } from "react";
+import { useState,useContext } from "react";
+import { MainContext } from "../context/MainContext";
 
 const BottomTab = createBottomTabNavigator();
 
 export const BottomTabScreen = () => {
-  const [user, setUser] = useState(false);
+  const {user}=useContext(MainContext)
   return (
     <BottomTab.Navigator
       screenOptions={({ route }) => ({
@@ -39,13 +40,8 @@ export const BottomTabScreen = () => {
       <BottomTab.Screen name={screenNames.HOME} component={HomeScreen} />
       <BottomTab.Screen name={screenNames.SCAN} component={ScanScreen} />
       <BottomTab.Screen
-        name={screenNames.ORDER}
-        component={
-          // user ? 
-          OrderScreen 
-          // : 
-          // SignupScreen
-        }
+        name={user ? screenNames.ORDER : screenNames.SIGNUP}
+        component={user ? OrderScreen : SignupScreen}
       />
       {user && (
         <BottomTab.Screen

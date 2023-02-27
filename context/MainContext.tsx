@@ -6,6 +6,8 @@ import { createContext, ReactNode, useState, useEffect } from "react";
 export const MainContext = createContext<any>(null);
 
 export const MainProvider = ({ children }: { children: ReactNode }) => {
+  const [user, setUser] = useState(null);
+  const [phone, setPhone] = useState("");
   const [confirm, setConfirm] = useState<any>(null);
   const [products, setProducts] = useState<any>([]);
   const [productsInBag, setProductsInBag] = useState([]);
@@ -32,17 +34,21 @@ export const MainProvider = ({ children }: { children: ReactNode }) => {
 
   const confirmCode = async (code: string) => {
     try {
-      await confirm.confirm(code).then((user:any)=>{
-        console.log(user.id)
-      });
+      return await confirm.confirm(code);
     } catch (error) {
       console.log("Invalid code.");
     }
   };
   const value: any = {
+    user,
     confirm,
+    setUser,
     products,
     confirmCode,
+    phone,
+    setPhone,
+    productsInBag,
+    setProductsInBag,
     registerWithPhoneNumber,
   };
   return <MainContext.Provider value={value}>{children}</MainContext.Provider>;

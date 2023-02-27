@@ -5,15 +5,28 @@ import {
   SafeAreaView,
   TouchableOpacity,
 } from "react-native";
-import { useState } from "react";
-import { AddNewCard } from "../components";
+import { useState, useContext } from "react";
 import { cardArr, methodArr } from "../constants";
 import { MaterialIcons } from "@expo/vector-icons";
+import { MainContext } from "../context/MainContext";
 import { useNavigation } from "@react-navigation/native";
+import { AddNewCard, PaymentSuccess } from "../components";
+import firestore from "@react-native-firebase/firestore";
 
 export const PaymentScreen = () => {
   const navigate = useNavigation();
+  const [onSuccess, setOnSuccess] = useState(false);
+  const { productsInBag, user } = useContext(MainContext);
   const [openModal, setOpenModal] = useState(false);
+  const paymentOrder = async () => {
+    setOnSuccess(true);
+    productsInBag.forEach((product: any) => {
+      firestore().collection("orders").doc(user).collection("myOrder").add(product)
+    });
+    setTimeout(() => {
+      setOnSuccess(false);
+    }, 2000);
+  };
   return (
     <>
       <SafeAreaView className="bg-white flex-1">
@@ -30,8 +43,9 @@ export const PaymentScreen = () => {
         <View className="py-6 px-4">
           <Text className="font-medium">Credit card</Text>
           {cardArr.map((item, id) => (
-            <View
+            <TouchableOpacity
               key={id}
+              onPress={paymentOrder}
               className="flex flex-row items-center justify-between p-3 rounded mt-4 border border-[#EAEAEA]"
             >
               <View className="flex flex-row items-center space-x-7">
@@ -53,7 +67,7 @@ export const PaymentScreen = () => {
                 size={24}
                 color={"black"}
               />
-            </View>
+            </TouchableOpacity>
           ))}
           <TouchableOpacity
             onPress={() => setOpenModal(true)}
@@ -65,7 +79,7 @@ export const PaymentScreen = () => {
           </TouchableOpacity>
           <Text className="my-4 font-medium">Other methods</Text>
           {methodArr.map((item, id) => (
-            <View
+            <TouchableOpacity
               key={id}
               className="flex flex-row items-center justify-between p-3 rounded mt-4 border border-[#EAEAEA]"
             >
@@ -87,11 +101,12 @@ export const PaymentScreen = () => {
                 size={24}
                 color={"black"}
               />
-            </View>
+            </TouchableOpacity>
           ))}
         </View>
       </SafeAreaView>
       <AddNewCard setOpenModal={setOpenModal} openModal={openModal} />
+      {onSuccess && <PaymentSuccess />}
     </>
   );
 };

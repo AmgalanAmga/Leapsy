@@ -16,7 +16,7 @@ import { screenNames } from "../screenNames";
 
 export const OTPVerifyScreen = () => {
   const navigate = useNavigation();
-  const { confirmCode } = useContext(MainContext);
+  const { confirmCode, setUser,phone } = useContext(MainContext);
   const inputRef = useRef<TextInput>(null);
   const [number, setNumber] = useState<string>("");
   const [currentIndex, setCurrentIndex] = useState<number>(0);
@@ -54,7 +54,7 @@ export const OTPVerifyScreen = () => {
           Enter code sent to your phone
         </Text>
         <Text className="text-sm font-normal text-black/50 mb-7">
-          We sent it to the number +976 8864 2339
+          We sent it to the number +976 {phone}
         </Text>
         <View className="flex flex-row items-center justify-center space-x-2">
           {otp.map((_, id) => (
@@ -74,7 +74,8 @@ export const OTPVerifyScreen = () => {
         disabled={joinedNum.length !== 6}
         activeOpacity={0.8}
         onPress={async () => {
-          await confirmCode(joinedNum);
+          const res = await confirmCode(joinedNum);
+          setUser(res?.user?.phoneNumber);
           navigate.navigate(screenNames.ORDER as never);
         }}
         className={`bg-red-500 mx-3 mb-5 rounded-md ${

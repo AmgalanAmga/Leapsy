@@ -1,10 +1,12 @@
-import React from "react";
+import { useContext } from "react";
 import { screenNames } from "../screenNames";
+import { MainContext } from "../context/MainContext";
 import { useNavigation } from "@react-navigation/native";
 import { View, TouchableOpacity, Text } from "react-native";
 import { Feather, MaterialIcons } from "@expo/vector-icons";
 
 export const DetailBagBack = () => {
+  const { productsInBag } = useContext(MainContext);
   const navigate = useNavigation();
   return (
     <View className="absolute top-14 flex flex-row items-center justify-between z-20 w-full px-5">
@@ -16,7 +18,7 @@ export const DetailBagBack = () => {
       </TouchableOpacity>
       <View className="relative">
         <Text className="absolute -top-2 -left-2 z-10 p-1 rounded-full bg-[#D3A762]">
-          15
+          {productsInBag.length}
         </Text>
         <TouchableOpacity
           onPress={() => navigate.navigate(screenNames.MYBAG as never)}
